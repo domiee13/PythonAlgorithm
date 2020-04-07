@@ -1,4 +1,5 @@
-str = "Dung dep trai"
+list1 = [1,2,3]
 
-str[1] = 'p'
-print(str)
+list1 =list1[1:2][::-1]
+
+print(list1)

@@ -1,5 +1,9 @@
 isFinal = False
+res = []
+arr = []  # Chi dung voi bien toan cuc ?
 
+
+# Chua tim duoc cach fix voi bien cuc bo
 
 def init(n):
     arr = []
@@ -12,34 +16,37 @@ def display(arr):
     res = ""
     for i in arr:
         res += str(i)
-    print(res)
+    print(res, end=" ")
 
 
-def gen(arr):
+def gen():
     global isFinal
+    global arr
     l = len(arr)
     j = l - 2
-    while (arr[j] > arr[j + 1]):
+    while arr[j] > arr[j + 1]:
         j -= 1
-    print(j)
-    print(arr[j])
-    if (j >= 0):
+    if j >= 0:
         k = len(arr) - 1
-        print(j, k)
-        while (arr[j] > arr[k]):
+        while arr[j] > arr[k]:
             k -= 1
-        # print('arr[j] = ', arr[j])
-        # print('arr[k] = ', arr[k])
         arr[j], arr[k] = arr[k], arr[j]
-        # print('arr[j] = ', arr[j])
-        # print('arr[k] = ', arr[k])
-        print(arr[:j+1],arr[j+1:][::-1])
         arr = arr[:j + 1] + arr[j + 1:][::-1]
     else:
         isFinal = True
 
-
-n= int(input())
-arr = init(n)
-while(not isFinal):
-    gen(arr)
+count = int(input())
+for i in range(0,count):
+    n = int(input())
+    arr = init(n)
+    while not isFinal:
+        # display(arr)
+        res.append(list(arr))  # Shallow copies
+        # print(res)
+        gen()
+    for item in res[::-1]:
+        display(item)
+    print()
+    arr.clear()
+    res.clear()
+    isFinal = False
